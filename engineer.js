@@ -9,3 +9,6 @@ class Engineer extends Employee {
         console.log(`Employee Github: ${this.github}`);
     }
 }
+
+//email mail:to target _blank
+//github : (https://github.com/${data.github}/)  target _blank.
