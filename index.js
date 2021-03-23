@@ -1,7 +1,9 @@
 //import needed packages
-const inquire = require('inquirer')
+const inquire = require('inquirer');
+const fs = require('fs');
+const generateHTML = require('./utility/writehtml');
 
-//array for question to determin what happens next
+//array for question to determine what happens next
 const questions = [
     {
         type: 'list',
@@ -84,6 +86,9 @@ const internQuestions = [
     },
 ]
 
+//array to populate created employees
+const teamMembers = [];
+
 // function writes the HTML to file and logs errors or that the page was written
 function writeToFile(filetype, data) {
     fs.writeFile(filetype, data, (err) =>
@@ -104,7 +109,7 @@ function init() {
 
         //then take the data and pass through write to file
         .then((data) => {
-            let htmlContent = generateHtml(data);
+            let htmlContent = generateHTML(data);
             const filename = 'README.md';
             writeToFile(filename, markdownPageContent);
         })

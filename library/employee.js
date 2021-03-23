@@ -11,3 +11,5 @@ class Employee {
         console.log(`Employee email: ${this.email}`)
     }
 }
+
+module.exports = Employee;
