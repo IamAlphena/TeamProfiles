@@ -7,8 +7,7 @@ const generateHTML = require('./utility/writehtml');
 const Employee = require('./library/employee');
 const Manager = require('./library/manager');
 const Engineer = require('./library/engineer');
-const Intern = require('./library/intern')
-
+const Intern = require('./library/intern');
 
 //array for questions, that include when conditionals to determin which question to ask next
 const questions = [
@@ -90,14 +89,14 @@ function writeToFile(filetype, data) {
     )
 }
 
-function addEmployee() {
+function addEmployee(){
     //using inquirer, 
     //have our questioins go through node to collect our data
     inquire
         .prompt(questions)
         //then send answers into the array to build with
         .then((answers) => {
-            console.log(answers)
+            // console.log(answers)
             let newEmployee;
             //check for type of employee to save the correct class
             if (answers.type === "Manager"){
@@ -108,27 +107,33 @@ function addEmployee() {
                 newEmployee = new Intern(answers.name, answers.id, answers.email, answers.school)
             //push to the team array 
             teamMembers.push(newEmployee)      
-            console.log(teamMembers)
+            // console.log(teamMembers)
        
              //repeat until done is selected
             if (answers.type !== "Done") {
                 addEmployee();
             } else {
-                return;
+                buildHtml(teamMembers);
             }
-        
         })    
-        //then take the data and pass through write to file
-        .then((teamMembers) => {
-            let htmlContent = generateHTML(teamMembers);
-            const filename = 'team.html';
-            writeToFile(filename, htmlContent);
-        })
+          
 
 }
 
+
+//function that calls the html page from our write html utility
+function buildHtml(teamMembers) {
+    let htmlContent = generateHTML(teamMembers);
+    const filename = 'team.html';
+    writeToFile(filename, htmlContent);
+}
+
+
+
+
 function init(){
     addEmployee();
+  
 }
 
 // run function to get it started
