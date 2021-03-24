@@ -2,8 +2,9 @@
 const inquire = require('inquirer');
 const fs = require('fs');
 const generateHTML = require('./utility/writehtml');
+const Engineer = require('./library/engineer');
 
-//array for question to determine what happens next
+//array for questions, that include when conditionals to determin which question to ask next
 const questions = [
     {
         type: 'list',
@@ -88,15 +89,24 @@ function init() {
     //have our questioins go through node to collect our data
     inquire
         .prompt(questions)
-
+        //then send answers into the array to build with
+        .then((data) => {
+            let newEmployee
+            if (data.type === "Manager"){
+                newEmployee = new Manager(name, id, email, officeNumber)
+            } else if (data.type === "Engineer"){
+                newEmployee = new Engineer(name, id, email, github)
+            } else if (data.type === "Intern")
+                newEmployee = new Intern(name, id, email, school)
+        })
 
         //repeat until done is selected
 
         //then take the data and pass through write to file
-        .then((data) => {
-            let htmlContent = generateHTML(data);
+        .then((teamMembers) => {
+            let htmlContent = generateHTML(teamMembers);
             const filename = 'README.md';
-            writeToFile(filename, markdownPageContent);
+            writeToFile(filename, htmlContent);
         })
 }
 
