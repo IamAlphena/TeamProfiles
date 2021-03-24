@@ -20,7 +20,7 @@ const html =
             <h1 class="display-4" style="text-align: center;">My Team</h1>
         </div>
     </div>
-    <div class="container" id="cardSpace" style= "display: flex;">
+    <div class="container" id="cardSpace" style= "display: flex; flex-wrap: wrap;">
     </div>
 </body>
 </html>`

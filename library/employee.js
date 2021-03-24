@@ -5,10 +5,16 @@ class Employee {
         this.email = email;
     }
 
-    printStats(){
-        console.log(`Employee name: ${this.name}`);
-        console.log(`Employee ID : ${this.id}`);
-        console.log(`Employee email: ${this.email}`)
+    getName(){
+        return this.name
+    }
+
+    getId(){
+        return this.id
+    }
+
+    getEmail(){
+        return this.email
     }
 }
 
