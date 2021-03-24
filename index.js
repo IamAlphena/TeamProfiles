@@ -7,82 +7,69 @@ const generateHTML = require('./utility/writehtml');
 const questions = [
     {
         type: 'list',
-        name: 'employment',
+        name: 'type',
         message: 'Would like to add another member to the team?',
         choices: ['Manager', 'Engineer', 'Intern', 'Done']
     },
-]
-
-// questions if it is a manager
-const managerQuestions = [
     {
         type: 'input',
         name: 'name',
         message: 'What is this employees name?',
+        when: (answers) => {
+            if (answers.type !== "Done") {
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'ID',
         message: 'What is this employees ID number?',
+        when: (answers) => {
+            if (answers.type !== "Done") {
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'email',
         message: 'What is this employees email?',
+        when: (answers) => {
+            if (answers.type !== "Done") {
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'officeNumber',
         message: 'What is this managers office number?',
-    },
-]
-
-//questions if engineer
-const engineerQuestions = [
-    {
-        type: 'input',
-        name: 'name',
-        message: 'What is this employees name?',
-    },
-    {
-        type: 'input',
-        name: 'ID',
-        message: 'What is this employees ID number?',
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is this employees email?',
+        when: (answers) => {
+            if (answers.type === "Manager") {
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'github',
         message: 'What is this engineers github name?',
-    },
-]
-
-//questions if intern
-const internQuestions = [
-    
-    {
-        type: 'input',
-        name: 'name',
-        message: 'What is this employees name?',
-    },
-    {
-        type: 'input',
-        name: 'ID',
-        message: 'What is this employees ID number?',
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is this employees email?',
+        when: (answers) => {
+            if (answers.type === "Engineer") {
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'school',
         message: 'What is this interns school?',
+        when: (answers) => {
+            if (answers.type === "Intern") {
+                return true;
+            }
+        }
     },
 ]
 
@@ -101,9 +88,7 @@ function init() {
     //have our questioins go through node to collect our data
     inquire
         .prompt(questions)
-        //logic based if it is manager, engineer, intern
 
-        //send data if manager, engineer, intern to correct file
 
         //repeat until done is selected
 
