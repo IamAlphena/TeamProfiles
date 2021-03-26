@@ -6,7 +6,6 @@ const Employee = require('./library/employee');
 const Manager = require('./library/manager');
 const Engineer = require('./library/engineer');
 const Intern = require('./library/intern');
-const { each } = require('lodash');
 
 //array for questions, that include when conditionals to determin which question to ask next
 const questions = [
@@ -206,18 +205,15 @@ function generateHTML(data) {
             </div>`
             fullHtml.push(internCard)
         }
-       
     }
     fullHtml.push(endHtml);
 
-    // const filename = 'team.html';
-    // writeToFile(filename, fullHtml);
-  
+    const filename = 'team.html';
+    writeToFile(filename, fullHtml.join());
 }
  
 function init() {
     addEmployee();
-
 }
 
 // run function to get it started
