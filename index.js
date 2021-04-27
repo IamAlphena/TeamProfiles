@@ -198,7 +198,7 @@ function generateHTML(data) {
                 <div style="padding: 10px; padding-top: 20px; padding-bottom: 20px; background-color: #a6a6a6;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${data[i].id} </li>
-                        <li class="list-group-item">Email" ${data[i].email} </li>
+                        <li class="list-group-item">Email: ${data[i].email} </li>
                         <li class="list-group-item">School ${data[i].school}</li>
                     </ul>
                 </div>
